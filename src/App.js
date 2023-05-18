@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+
+import { useTranslation } from 'react-i18next';
+import Price from './price';
 
 function App() {
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    document.dir = i18n.dir();
+    document.documentElement.lang = i18n.language;
+
+    document.title = i18n.t('document_title');
+  }, [i18n, i18n.language]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <h1 className="text-5xl  underline">
+      <Price />
+    </h1>
   );
 }
 
